@@ -9,5 +9,6 @@
     [paginationPageSize]="paginationPageSize"
     [domLayout]="domLayout"
     [frameworkComponents]="frameworkComponents"
-    (gridReady)="onGridReady($event)">
+    (gridReady)="onGridReady($event)"
+    (rowClicked)='onRowClicked($event)'>
 </ag-grid-angular>
