@@ -6,11 +6,10 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DataHandlingService, DATA } from '../service/data-handling.service';
+import { ChartComponent } from '../chart/chart.component';
 
-export interface DialogData {
-  text: string;
-  isCompleted: boolean;
-}
+
 
 
 @Component({
@@ -23,12 +22,12 @@ export class TodoFormComponent implements OnInit {
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
   constructor(private _snackBar: MatSnackBar, public dialogRef: MatDialogRef<TodoFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: DATA,private dataService:DataHandlingService) {
     if (data) {
-      console.log("Dialog open", data.isCompleted);
+      console.log("Dialog open", typeof(data.text));
       this.todoForm.patchValue({
-        todoText: data.text,
-        isCompleted: data.isCompleted+""
+        text: data.text,
+        completed: data.completed+""
       });
     }
   }
@@ -38,8 +37,8 @@ export class TodoFormComponent implements OnInit {
   }
 
   todoForm = new FormGroup({
-    todoText: new FormControl('', Validators.required),
-    isCompleted: new FormControl()
+    text: new FormControl('', Validators.required),
+    completed: new FormControl()
   });
 
   onSubmit() {
@@ -49,6 +48,12 @@ export class TodoFormComponent implements OnInit {
       verticalPosition: this.verticalPosition,
     });
     console.log(this.todoForm.value);
-    this.dialogRef.close();
+    this.dataService.saveData(this.todoForm.value).subscribe(data=>{
+      this.dataService.listOfTodos.push(data);
+      console.log("After push length ",this.dataService.listOfTodos.length);
+      this.dialogRef.close();
+      this.dataService.sendClick();
+    })    
+    //this.chart.renderChart();
   }
 }

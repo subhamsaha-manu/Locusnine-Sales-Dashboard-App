@@ -1,15 +1,17 @@
 <div class="bounds">
   <div class="upperContent" fxLayout="column" fxFlexFill fxLayoutAlign="" fxLayoutGap="20px">
     <div class="banner" fxFlex="40px" fxFlexOffset="">
-
+      <h2>Todo Tracker Dashboard</h2>
     </div>
     <div class="horizontalBar" fxFlex="40px">
-      <button mat-button (click)="openDialog()">Open dialog</button>
+      <button mat-button (click)="openDialog()">Completed Task</button>
+      <button mat-button (click)="openDialog()">Incomplete Task</button>
+      <button mat-button (click)="openDialog()">Add new task</button>
     </div>
     <div class="horizontalBar" fxFlex="40px">
-
+      <h3>Subham Saha</h3>
     </div>
-    <div id="content" fxFlex fxLayout.xs="column">
+    <div id="content" fxFlex fxLayout.xs="column" fxLayoutGap="20px">
       <div id="pieChartDiv" fxFlex="40" fxFlex.xs="250px">
         <mat-card>
           <app-chart></app-chart>

@@ -9,11 +9,11 @@ import { DataHandlingService } from './service/data-handling.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Locusnine-Sales-Dashboard-App';
+  title = 'Todo Dashboard';
   data : any;
   constructor(public dialog: MatDialog,private dataService:DataHandlingService) {
     dataService.fetchData();
-    this.data = dataService.data;
+    this.data = dataService.listOfTodos;
   }
 
   openDialog() {
@@ -21,6 +21,12 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  ngAfterViewChecked(){
+    this.dataService.fetchData().subscribe(data=>{
+      this.dataService.listOfTodos = data;
     });
   }
 }

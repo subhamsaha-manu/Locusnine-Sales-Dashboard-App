@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartType, ChartOptions, ChartLegendOptions } from 'chart.js';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { ChartType, ChartOptions } from 'chart.js';
 import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip, Color } from 'ng2-charts';
 import { DataHandlingService } from '../service/data-handling.service';
+import { Subscription } from 'rxjs';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-chart',
@@ -10,13 +12,16 @@ import { DataHandlingService } from '../service/data-handling.service';
 })
 export class ChartComponent implements OnInit {
 
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective;
+
+  clickEventListener: Subscription;
   // Pie
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
 
   public chartOptions: any = {
-    legend: { position: 'bottom' }
+    legend: { position: 'bottom' },
   };
   public pieChartLabels: Label[] = ['Completed Task', 'Incomplete Task'];
   public pieChartData: SingleDataSet = [];
@@ -32,23 +37,29 @@ export class ChartComponent implements OnInit {
   constructor(private dataService: DataHandlingService) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
-
+    this.clickEventListener = this.dataService.getClickEvent().subscribe(() => {
+      console.log("Chart post click");
+      this.renderChart();
+    });
   }
 
   ngOnInit() {
+    setTimeout(() => this.renderChart(), 500);
+  }
+  renderChart() {
     let completedCount: number = 0;
-    this.dataService.fetchData().subscribe({
-      next:items=>{
-        let noOfItems = items.length;
-        console.log("No of items ",noOfItems);
-        items.forEach(ele=>{
-          if(ele.completed)
-            completedCount++;
-        })
-        console.log("No of completed todos ",completedCount);
-        this.pieChartData[0] = completedCount;
-        this.pieChartData[1] = noOfItems - completedCount;
-      }      
-    });
+    if (this.dataService.listOfTodos) {
+      this.dataService.listOfTodos.forEach(item => {
+        if (item.completed)
+          completedCount++;
+      });
+      let noOfItems = this.dataService.listOfTodos.length;
+      /*console.log("No of items ", noOfItems);
+      console.log("No of completed todos ", completedCount);*/
+      this.pieChartData[0] = completedCount;
+      this.pieChartData[1] = noOfItems - completedCount;
+    }
+    this.chart.chart.update();
+    console.log("Chart options ",this.chart.chart);
   }
 }
