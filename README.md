@@ -13,7 +13,7 @@ The features of this app are :-
 ## Build
 
 This application depends on the backend developed using Spring boot and available at this location :-
- 
+
 https://github.com/subhamsaha-manu/Spring-Boot-App-With-TDD
 
 Steps to run this application :-
@@ -21,7 +21,9 @@ Steps to run this application :-
 1.Checkout both the frontend and backend repositories in different folder.
 2.Search the frontend directory for the text 192.168.0.104 which was my personal ip, and replace it with local ip
 3.Build and start the backend local server using 
-    mvn clean install
+    gradle clean build
+    cd build\libs
+    java -jar springBootAppWithTDD-0.0.1-SNAPSHOT.jar
 4.Install the frontend dependencies using
     npm install
 5.When both the commands are executed sucessfully, run the following command
