@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Locusnine-Sales-Dashboard-App": {
+    "Todo-Management-Dashboard-App": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Locusnine-Sales-Dashboard-App",
+            "outputPath": "dist/Todo-Management-Dashboard-App",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Locusnine-Sales-Dashboard-App:build"
+            "browserTarget": "Todo-Management-Dashboard-App:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Locusnine-Sales-Dashboard-App:build:production"
+              "browserTarget": "Todo-Management-Dashboard-App:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Locusnine-Sales-Dashboard-App:build"
+            "browserTarget": "Todo-Management-Dashboard-App:build"
           }
         },
         "test": {
@@ -112,16 +112,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Locusnine-Sales-Dashboard-App:serve"
+            "devServerTarget": "Todo-Management-Dashboard-App:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Locusnine-Sales-Dashboard-App:serve:production"
+              "devServerTarget": "Todo-Management-Dashboard-App:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "Locusnine-Sales-Dashboard-App"
+  "defaultProject": "Todo-Management-Dashboard-App"
 }
