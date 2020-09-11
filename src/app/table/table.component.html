@@ -10,6 +10,11 @@
     [domLayout]="domLayout"
     [frameworkComponents]="frameworkComponents"    
     [tooltipShowDelay]="tooltipShowDelay"
+    [rowSelection]="rowSelection"
+    [animateRows]="true"
+    [getRowNodeId]="getRowNodeId"
     (gridReady)="onGridReady($event)"
     (rowClicked)='onRowClicked($event)'>
 </ag-grid-angular>
+<button style="float:right;margin-top:5px" mat-raised-button color="warn" (click)="onRemoveSelected()">Remove Selected</button>
+<button mat-raised-button color="primary" style="float:right;margin-top:5px;margin-right: 5px;" (click)="addNewTask()">Add new task</button>

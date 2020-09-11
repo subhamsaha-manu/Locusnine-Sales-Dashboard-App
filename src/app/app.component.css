@@ -1,15 +1,23 @@
 .bounds {
-    background-color: #eff3f6;
-    height: 100%;
-    padding:5px;
+  background-color: #eff3f6;
+  height: 100%;
+  padding: 5px;
 }
+
 .banner {
-    text-align: center;
-    min-height: 80px;
+  text-align: center;
+  min-height: 80px;
 }
 
 .horizontalBar {
-    background-color: beige;
-    text-align: center;
+  /*background-color: beige;*/
+  text-align: center;
 }
 
+#userName {
+  letter-spacing: 0.156em;
+  font-size: 35px;
+  line-height: 36px;
+  font-style: normal;
+  font-weight: 400;
+}

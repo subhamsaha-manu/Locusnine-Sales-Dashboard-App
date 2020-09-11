@@ -3,15 +3,15 @@
     <div class="banner" fxFlex="40px" fxFlexOffset="">
       <h2>Todo Tracker Dashboard</h2>
     </div>
-    <div class="horizontalBar" fxFlex="40px">
-      <button mat-button (click)="openDialog()">Completed Task</button>
-      <button mat-button (click)="openDialog()">Incomplete Task</button>
-      <button mat-button (click)="openDialog()">Add new task</button>
+    <div class="horizontalBar" fxFlex="40px" fxLayoutGap="5px" >
+      <button mat-raised-button (click)="sendTrue()">Completed Task</button>
+      <button mat-raised-button (click)="sendFalse()">Incomplete Task</button>      
+      <button mat-raised-button (click)="viewAll()">View All</button>
     </div>
-    <div class="horizontalBar" fxFlex="40px">
-      <h3>Subham Saha</h3>
+    <div class="horizontalBar" fxFlex="40px" fxLayoutGap="5px">
+      <span id="userName">Subham Saha</span>
     </div>
-    <div id="content" fxFlex fxLayout.xs="column" fxLayoutGap="20px">
+    <div id="content" fxFlex fxLayout.xs="column" fxLayoutGap="10px">
       <div id="pieChartDiv" fxFlex="40" fxFlex.xs="250px">
         <mat-card>
           <app-chart></app-chart>
@@ -19,10 +19,9 @@
       </div>
       <div id="tableDiv" fxFlex="60" fxFlex.xs="250px">
         <mat-card>
-          <app-table></app-table>
+          <app-table [flag]=completionStatus></app-table>
         </mat-card>
       </div>
     </div>
   </div>
-
 </div>

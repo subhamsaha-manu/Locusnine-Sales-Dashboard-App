@@ -1,6 +1,7 @@
 <h2 mat-dialog-title>Add New Todo</h2>
 <mat-dialog-content class="mat-typography">
     <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+      <input matInput formControlName="id" placeholder="Todo Task" type="number" hidden>
       <p>
         <mat-form-field appearance="outline">
           <mat-label>Task</mat-label>

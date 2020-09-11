@@ -10,23 +10,24 @@ import { DataHandlingService } from './service/data-handling.service';
 })
 export class AppComponent {
   title = 'Todo Dashboard';
-  data : any;
+  completionStatus:string='';
   constructor(public dialog: MatDialog,private dataService:DataHandlingService) {
     dataService.fetchData();
-    this.data = dataService.listOfTodos;
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(TodoFormComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  sendFalse(){
+    this.completionStatus = 'false';
   }
 
-  ngAfterViewChecked(){
-    this.dataService.fetchData().subscribe(data=>{
-      this.dataService.listOfTodos = data;
-    });
+  sendTrue(){
+    this.completionStatus = 'true';
   }
+
+  viewAll(){
+    this.completionStatus='';
+  }
+
+  /*ngOnChanges(){
+    this.dataService.fetchData();
+  }*/
 }

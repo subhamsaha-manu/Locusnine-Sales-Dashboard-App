@@ -38,7 +38,7 @@ export class ChartComponent implements OnInit {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
     this.clickEventListener = this.dataService.getClickEvent().subscribe(() => {
-      console.log("Chart post click");
+      //console.log("Chart post click");
       this.renderChart();
     });
   }
@@ -47,10 +47,10 @@ export class ChartComponent implements OnInit {
     setTimeout(() => this.renderChart(), 500);
   }
   renderChart() {
-    let completedCount: number = 0;
+    var completedCount: number = 0;
     if (this.dataService.listOfTodos) {
       this.dataService.listOfTodos.forEach(item => {
-        if (item.completed)
+        if (item.completed==true)
           completedCount++;
       });
       let noOfItems = this.dataService.listOfTodos.length;
@@ -60,6 +60,6 @@ export class ChartComponent implements OnInit {
       this.pieChartData[1] = noOfItems - completedCount;
     }
     this.chart.chart.update();
-    console.log("Chart options ",this.chart.chart);
+    //console.log("Chart options ",this.chart.chart);
   }
 }
